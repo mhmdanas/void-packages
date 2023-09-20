@@ -1,0 +1,17 @@
+Fixes services timing out before they can start on miu.
+
+diff --git a/internal/cmd/cmd.go b/internal/cmd/cmd.go
+index a250542..1a1868a 100644
+--- a/internal/cmd/cmd.go
++++ b/internal/cmd/cmd.go
+@@ -50,8 +50,8 @@ var (
+ 	execCommand = goCmd.NewCmdOptions
+ 	// for mocking in tests
+ 	sockHandler = notifySockHandler
+-	// give 100ms for process to start
+-	startTimerDuration = 100 * time.Millisecond
++	// give 10s for process to start
++	startTimerDuration = 10 * time.Second
+ 	upCheck            = isUp
+ )
+ 
