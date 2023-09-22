@@ -1,0 +1,37 @@
+# Template file for 'qbe-git'
+#
+# Sync with 'qbe' template
+pkgname=qbe-git
+version=0.0.2023.09.22
+revision=1
+_git_commit=c5aca682a20d8cf55c345b7e07be51230693fd84
+build_style=gnu-makefile
+make_use_env=yes
+short_desc="Small embeddable C compiler backend"
+maintainer="Mohammed Anas <triallax@tutanota.com>"
+license="MIT"
+homepage="https://c9x.me/compile/"
+
+# Currently only aarch64 and x86_64 targets are supported and the checks
+# test the compiled binaries.
+case "$XBPS_TARGET_MACHINE" in
+	aarch64*|x86_64*) ;;
+	*) make_check=no ;;
+esac
+
+do_fetch() {
+	rm -rf ${wrksrc}
+	/usr/libexec/chroot-git/git clone \
+		--filter=blob:none \
+		git://c9x.me/qbe.git ${wrksrc}
+	cd ${wrksrc}
+	/usr/libexec/chroot-git/git checkout ${_git_commit}
+}
+
+post_install() {
+	vdoc doc/abi.txt
+	vdoc doc/il.txt
+	vdoc doc/llvm.txt
+
+	vlicense LICENSE
+}
