@@ -1,0 +1,20 @@
+# Template file for 'hare-git'
+pkgname=hare-git
+version=0.0.2023.11.12
+revision=1
+build_style=gnu-makefile
+_git_commit="3d06f9d20ff097d7c3a273c7059c8ca6ed4fe6db"
+hostmakedepends="qbe-git harec-git scdoc"
+depends="qbe-git harec-git tzdata"
+short_desc="Hare programming language"
+maintainer="Mohammed Anas <triallax@tutanota.com>"
+license="MPL-2.0, GPL-3.0-only"
+homepage="https://harelang.org/"
+distfiles="https://git.sr.ht/~sircmpwn/hare/archive/${_git_commit}.tar.gz"
+checksum=0e76242341c47e57404bcf76d0a8314774fa8f9168340fdcf62a9e2cdb3adbcc
+
+pre_build() {
+	cp config.example.mk config.mk
+	# TODO: make this a proper patch.
+	vsed 's:PREFIX = /usr/local:PREFIX = /usr:' -i config.mk
+}
