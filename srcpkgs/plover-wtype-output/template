@@ -1,0 +1,13 @@
+# Template file for 'plover-wtype-output'
+pkgname=plover-wtype-output
+version=0.0.2023.09.25
+revision=1
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+depends="python3 plover wtype"
+short_desc="Plover wtype output plugin"
+maintainer="Mohammed Anas <triallax@tutanota.com>"
+license="GPL-3.0-or-later"
+homepage="https://git.d2evs.net/~evan/plover-wtype-output"
+distfiles="https://git.d2evs.net/~evan/plover-wtype-output/archive/cf5e87faba6149dfedeb927c03ec95a69cc50245.tar.gz"
+checksum=bd38824eea69f1ff4dbd884dc01e9b067e9f4e422d00487c2e3f1ff23f98a88f
